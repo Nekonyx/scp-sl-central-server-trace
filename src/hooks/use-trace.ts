@@ -70,9 +70,10 @@ export function useTrace(url: string) {
 
     const startTime = performance.now()
     const endpoint = new URL('/cdn-cgi/trace', url)
+    const timeoutSignal = AbortSignal.timeout(60_000)
 
     fetch(endpoint, {
-      signal: AbortSignal.any([controller.signal, AbortSignal.timeout(5000)])
+      signal: AbortSignal.any([controller.signal, timeoutSignal])
     })
       .then(async (response) => {
         const endTime = performance.now()
@@ -88,18 +89,21 @@ export function useTrace(url: string) {
         })
       })
       .catch((error) => {
+        // Не выкидывать ошибку, если запрос прерван AbortController
+        if (error.name === 'AbortError' && !timeoutSignal.aborted) {
+          return
+        }
+
         const endTime = performance.now()
         const responseTime = Math.round(endTime - startTime)
 
-        if (error.name !== 'AbortError') {
-          dispatch({
-            type: 'FETCH_ERROR',
-            payload: {
-              error,
-              responseTime
-            }
-          })
-        }
+        dispatch({
+          type: 'FETCH_ERROR',
+          payload: {
+            error,
+            responseTime
+          }
+        })
       })
   }, [url, key])
 
