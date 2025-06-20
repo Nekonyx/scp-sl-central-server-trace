@@ -18,12 +18,14 @@ export function processTraceData(
   data: string,
   traceFields: Record<TraceField, string>
 ): TraceEntry[] {
-  return data
+  const entries = data
     .trim()
     .split('\n')
     .map((line) => line.split('=') as [TraceField, string])
     .filter((entry) => !HIDDEN_TRACE_FIELDS.has(entry[0]))
     .map(([field, value]) => processTraceEntry(field, value, traceFields))
+
+  return entries.length <= 1 ? [] : entries
 }
 
 function processTraceEntry(
