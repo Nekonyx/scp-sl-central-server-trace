@@ -1,5 +1,5 @@
 import { TraceResource } from '@/constants/trace'
-import { CircleCheckIcon, CircleXIcon, Loader2Icon } from 'lucide-react'
+import { CircleXIcon, Loader2Icon } from 'lucide-react'
 
 interface TraceStatusProps {
   isLoading: boolean
@@ -19,15 +19,7 @@ export function TraceStatus({ isLoading, data, error, resource, children }: Trac
   }
 
   if (data) {
-    return (
-      <div className="pt-2 pb-4 h-full">
-        <p className="flex items-center mb-2 font-semibold">
-          <CircleCheckIcon className="mr-1.5 size-4 text-blue-400 shrink-0" strokeWidth={3} />
-          {resource.messages.success}
-        </p>
-        {children}
-      </div>
-    )
+    return <div className="pt-2 h-full">{children}</div>
   }
 
   if (error) {

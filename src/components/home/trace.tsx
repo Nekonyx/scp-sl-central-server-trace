@@ -48,14 +48,21 @@ export function Trace({ className, resource, updateState }: TraceProps) {
           <span>{getHostname(resource)}</span>
         </CardTitle>
         <CardDescription>{resource.messages.description}</CardDescription>
-        <CardAction className={cn('group relative invisible', !isLoading && 'visible')}>
-          <span className={cn('right-0 absolute', 'transition-opacity group-hover:opacity-0')}>
+        <CardAction className={cn('group relative invisible', (!isLoading || error) && 'visible')}>
+          <span
+            className={cn(
+              'right-0 absolute',
+              'transition-opacity group-hover:opacity-0',
+              error && 'opacity-0'
+            )}
+          >
             {responseTime}ms
           </span>
           <Button
             className={cn(
               '-right-0.5 -top-1 absolute',
-              'transition-opacity cursor-pointer opacity-0 group-hover:opacity-100'
+              'transition-opacity cursor-pointer opacity-0 group-hover:opacity-100',
+              error && 'opacity-100'
             )}
             onClick={invalidate}
             variant="outline"
