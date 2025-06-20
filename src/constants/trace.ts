@@ -53,10 +53,20 @@ export const TRACE_RESOURCES: TraceResource[] = [
     }
   },
   {
+    type: TraceResourceType.ReserveCentral,
+    url: 'https://api.scpsecretlaboratory.com',
+    messages: {
+      description: 'Специальный центральный сервер игры для игроков из России',
+      failure:
+        'Резервный центральный сервер заблокирован или временно не работает. Попробуйте использовать средства для обхода блокировок.',
+      success: 'Доступ не заблокирован'
+    }
+  },
+  {
     type: TraceResourceType.PrimaryCentral,
     url: 'https://api.scpslgame.com',
     messages: {
-      description: 'Основной центральный сервер игры',
+      description: 'Первичный центральный сервер игры',
       failure: 'Основной центральный сервер игры заблокирован или временно не работает.',
       success: 'Доступ не заблокирован'
     }
@@ -65,7 +75,7 @@ export const TRACE_RESOURCES: TraceResource[] = [
     type: TraceResourceType.SecondaryCentral,
     url: 'https://gra1.scpslgame.com',
     messages: {
-      description: 'Резервный центральный сервер игры',
+      description: 'Вторичный центральный сервер игры',
       failure: 'Резервный центральный сервер заблокирован или временно не работает.',
       success: 'Доступ не заблокирован'
     }
@@ -74,18 +84,8 @@ export const TRACE_RESOURCES: TraceResource[] = [
     type: TraceResourceType.SecondaryCentral,
     url: 'https://gra2.scpslgame.com',
     messages: {
-      description: 'Резервный центральный сервер игры',
+      description: 'Вторичный центральный сервер игры',
       failure: 'Резервный центральный сервер заблокирован или временно не работает.',
-      success: 'Доступ не заблокирован'
-    }
-  },
-  {
-    type: TraceResourceType.ReserveCentral,
-    url: 'https://api.scpsecretlaboratory.com',
-    messages: {
-      description: 'Резервный центральный сервер игры для игроков из России',
-      failure:
-        'Резервный центральный сервер заблокирован или временно не работает. Попробуйте использовать средства для обхода блокировок.',
       success: 'Доступ не заблокирован'
     }
   }

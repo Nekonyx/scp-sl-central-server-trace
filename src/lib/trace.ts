@@ -3,7 +3,7 @@ import { TraceResource, TraceResourceType } from '@/constants/trace'
 export function isPrimaryTraceResource(resource: TraceResource): boolean {
   return (
     resource.type === TraceResourceType.Cloudflare ||
-    resource.type === TraceResourceType.PrimaryCentral
+    resource.type === TraceResourceType.ReserveCentral
   )
 }
 
