@@ -73,7 +73,7 @@ export function Trace({ className, resource, updateState }: TraceProps) {
         </CardAction>
       </CardHeader>
 
-      <CardContent className="pb-4 h-[12rem]">
+      <CardContent className="min-h-[10.5rem]">
         <TraceStatus isLoading={isLoading} data={data} error={error} resource={resource}>
           <TraceList entries={entries} />
         </TraceStatus>
