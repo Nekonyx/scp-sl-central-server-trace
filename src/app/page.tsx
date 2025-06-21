@@ -72,7 +72,7 @@ export default function Home() {
     if (!reserveFailed) {
       return {
         title: 'Есть проблемы',
-        description: 'Но резервный центральный сервер работает, приятной игры!',
+        description: 'Но резервный центральный сервер в ветке `tls-beta` работает, приятной игры!',
         icon: <AlertCircleIcon className="size-10 text-orange-400" />
       }
     }
